@@ -5,8 +5,7 @@ const bodyparser = require("body-parser");
 
 const cors = require("cors");
 
-// or as an es module:
-// import { MongoClient } from 'mongodb'
+
 const { MongoClient } = require("mongodb");
 
 // Load environment variables from .env file
