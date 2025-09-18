@@ -13,7 +13,7 @@ const Manager = () => {
   const [passwordArray, setPasswordArray] = useState([]);
 
   const getPasswords = async () => {
-    let req = await fetch("http://localhost:3000/");
+    let req = await fetch("https://mern-single-user-password-manager-backend.onrender.com");
     let passwords = await req.json();
     console.log(passwords);
     setPasswordArray(passwords);
@@ -62,7 +62,7 @@ const Manager = () => {
     } else {
       // if any such id exists in db, then delete it
       if (form.id) {
-        await fetch("http://localhost:3000/", {
+        await fetch("https://mern-single-user-password-manager-backend.onrender.com", {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ id: form.id }),
@@ -73,7 +73,7 @@ const Manager = () => {
 
       const updatedArray = [...passwordArray, newEntry];
       setPasswordArray(updatedArray);
-      await fetch("http://localhost:3000/", {
+      await fetch("https://mern-single-user-password-manager-backend.onrender.com", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newEntry),
@@ -89,7 +89,6 @@ const Manager = () => {
     let c = confirm("Do you really want to delete this password?");
     if (c) {
       setPasswordArray(passwordArray.filter((item) => item.id !== id));
-      //localStorage.setItem("passwords",JSON.stringify(passwordArray.filter((item) => item.id !== id)));
       let res = await fetch("http://localhost:3000/", {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
